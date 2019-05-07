@@ -12,3 +12,14 @@ def test_hosts_file(host):
     assert f.exists
     assert f.user == 'root'
     assert f.group == 'root'
+
+
+def test_apache_service(host):
+    s = host.service('httpd')
+
+    assert s.is_running
+    assert s.is_enabled
+
+
+def test_apache_socket(host):
+    assert host.socket("tcp://80").is_listening
