@@ -1,2 +1,17 @@
 ---
 # tasks file for ansible-role-apache
+- import_role:
+    name: ansible-role-packages
+  vars:
+    packages: "{{ apache_packages }}"
+
+- import_role:
+    name: ansible-role-security
+  vars:
+    security: "{{ apache_security }}"
+
+- name: Ensure that apache is enabled and running
+  service:
+    name: 'httpd'
+    enabled: true
+    state: started

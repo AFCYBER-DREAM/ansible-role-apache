@@ -1,2 +1,12 @@
 ---
 # defaults file for ansible-role-apache
+
+apache_packages:
+  redhat:
+    - httpd
+    - iproute
+
+apache_security:
+  security_ports:
+    - {port: 80, protocol: 'tcp', port_type: 'http_port_t'}
+    - {port: 443, protocol: 'tcp', port_type: 'http_port_t'}
